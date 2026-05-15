@@ -1,0 +1,606 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000012FB8000000D81858 /* yLLMKit in Frameworks */ = {isa = PBXBuildFile; productRef = A10000032FB8000000D81858 /* yLLMKit */; };
+		A10000022FB8000000D81858 /* yLLMKitMLX in Frameworks */ = {isa = PBXBuildFile; productRef = A10000042FB8000000D81858 /* yLLMKitMLX */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		40A9A67D2FB79BEF00D81858 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 40A9A6672FB79BEE00D81858 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 40A9A66E2FB79BEE00D81858;
+			remoteInfo = "yLLMKit-Demo";
+		};
+		40A9A6872FB79BEF00D81858 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 40A9A6672FB79BEE00D81858 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 40A9A66E2FB79BEE00D81858;
+			remoteInfo = "yLLMKit-Demo";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		40A9A66F2FB79BEE00D81858 /* yLLMKit-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "yLLMKit-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		40A9A67C2FB79BEF00D81858 /* yLLMKit-DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "yLLMKit-DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		40A9A6862FB79BEF00D81858 /* yLLMKit-DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "yLLMKit-DemoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		40A9A6712FB79BEE00D81858 /* yLLMKit-Demo */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "yLLMKit-Demo";
+			sourceTree = "<group>";
+		};
+		40A9A67F2FB79BEF00D81858 /* yLLMKit-DemoTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "yLLMKit-DemoTests";
+			sourceTree = "<group>";
+		};
+		40A9A6892FB79BEF00D81858 /* yLLMKit-DemoUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "yLLMKit-DemoUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		40A9A66C2FB79BEE00D81858 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000012FB8000000D81858 /* yLLMKit in Frameworks */,
+				A10000022FB8000000D81858 /* yLLMKitMLX in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40A9A6792FB79BEF00D81858 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40A9A6832FB79BEF00D81858 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		40A9A6662FB79BEE00D81858 = {
+			isa = PBXGroup;
+			children = (
+				40A9A6712FB79BEE00D81858 /* yLLMKit-Demo */,
+				40A9A67F2FB79BEF00D81858 /* yLLMKit-DemoTests */,
+				40A9A6892FB79BEF00D81858 /* yLLMKit-DemoUITests */,
+				40A9A6702FB79BEE00D81858 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		40A9A6702FB79BEE00D81858 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				40A9A66F2FB79BEE00D81858 /* yLLMKit-Demo.app */,
+				40A9A67C2FB79BEF00D81858 /* yLLMKit-DemoTests.xctest */,
+				40A9A6862FB79BEF00D81858 /* yLLMKit-DemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		40A9A66E2FB79BEE00D81858 /* yLLMKit-Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40A9A6902FB79BEF00D81858 /* Build configuration list for PBXNativeTarget "yLLMKit-Demo" */;
+			buildPhases = (
+				40A9A66B2FB79BEE00D81858 /* Sources */,
+				40A9A66C2FB79BEE00D81858 /* Frameworks */,
+				40A9A66D2FB79BEE00D81858 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				40A9A6712FB79BEE00D81858 /* yLLMKit-Demo */,
+			);
+			name = "yLLMKit-Demo";
+			packageProductDependencies = (
+				A10000032FB8000000D81858 /* yLLMKit */,
+				A10000042FB8000000D81858 /* yLLMKitMLX */,
+			);
+			productName = "yLLMKit-Demo";
+			productReference = 40A9A66F2FB79BEE00D81858 /* yLLMKit-Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		40A9A67B2FB79BEF00D81858 /* yLLMKit-DemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40A9A6932FB79BEF00D81858 /* Build configuration list for PBXNativeTarget "yLLMKit-DemoTests" */;
+			buildPhases = (
+				40A9A6782FB79BEF00D81858 /* Sources */,
+				40A9A6792FB79BEF00D81858 /* Frameworks */,
+				40A9A67A2FB79BEF00D81858 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				40A9A67E2FB79BEF00D81858 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				40A9A67F2FB79BEF00D81858 /* yLLMKit-DemoTests */,
+			);
+			name = "yLLMKit-DemoTests";
+			packageProductDependencies = (
+			);
+			productName = "yLLMKit-DemoTests";
+			productReference = 40A9A67C2FB79BEF00D81858 /* yLLMKit-DemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		40A9A6852FB79BEF00D81858 /* yLLMKit-DemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40A9A6962FB79BEF00D81858 /* Build configuration list for PBXNativeTarget "yLLMKit-DemoUITests" */;
+			buildPhases = (
+				40A9A6822FB79BEF00D81858 /* Sources */,
+				40A9A6832FB79BEF00D81858 /* Frameworks */,
+				40A9A6842FB79BEF00D81858 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				40A9A6882FB79BEF00D81858 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				40A9A6892FB79BEF00D81858 /* yLLMKit-DemoUITests */,
+			);
+			name = "yLLMKit-DemoUITests";
+			packageProductDependencies = (
+			);
+			productName = "yLLMKit-DemoUITests";
+			productReference = 40A9A6862FB79BEF00D81858 /* yLLMKit-DemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		40A9A6672FB79BEE00D81858 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2610;
+				LastUpgradeCheck = 2610;
+				TargetAttributes = {
+					40A9A66E2FB79BEE00D81858 = {
+						CreatedOnToolsVersion = 26.1;
+					};
+					40A9A67B2FB79BEF00D81858 = {
+						CreatedOnToolsVersion = 26.1;
+						TestTargetID = 40A9A66E2FB79BEE00D81858;
+					};
+					40A9A6852FB79BEF00D81858 = {
+						CreatedOnToolsVersion = 26.1;
+						TestTargetID = 40A9A66E2FB79BEE00D81858;
+					};
+				};
+			};
+			buildConfigurationList = 40A9A66A2FB79BEE00D81858 /* Build configuration list for PBXProject "yLLMKit-Demo" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 40A9A6662FB79BEE00D81858;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A10000052FB8000000D81858 /* XCRemoteSwiftPackageReference "yLLMKit" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 40A9A6702FB79BEE00D81858 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				40A9A66E2FB79BEE00D81858 /* yLLMKit-Demo */,
+				40A9A67B2FB79BEF00D81858 /* yLLMKit-DemoTests */,
+				40A9A6852FB79BEF00D81858 /* yLLMKit-DemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		40A9A66D2FB79BEE00D81858 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40A9A67A2FB79BEF00D81858 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40A9A6842FB79BEF00D81858 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		40A9A66B2FB79BEE00D81858 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40A9A6782FB79BEF00D81858 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40A9A6822FB79BEF00D81858 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		40A9A67E2FB79BEF00D81858 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 40A9A66E2FB79BEE00D81858 /* yLLMKit-Demo */;
+			targetProxy = 40A9A67D2FB79BEF00D81858 /* PBXContainerItemProxy */;
+		};
+		40A9A6882FB79BEF00D81858 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 40A9A66E2FB79BEE00D81858 /* yLLMKit-Demo */;
+			targetProxy = 40A9A6872FB79BEF00D81858 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A10000052FB8000000D81858 /* XCRemoteSwiftPackageReference "yLLMKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BrandonYaniz/yLLMKit.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A10000032FB8000000D81858 /* yLLMKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000052FB8000000D81858 /* XCRemoteSwiftPackageReference "yLLMKit" */;
+			productName = yLLMKit;
+		};
+		A10000042FB8000000D81858 /* yLLMKitMLX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A10000052FB8000000D81858 /* XCRemoteSwiftPackageReference "yLLMKit" */;
+			productName = yLLMKitMLX;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCBuildConfiguration section */
+		40A9A68E2FB79BEF00D81858 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		40A9A68F2FB79BEF00D81858 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		40A9A6912FB79BEF00D81858 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "yLLMKit-Demo/yLLMKit-Demo.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.yaniz.yLLMKit-Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		40A9A6922FB79BEF00D81858 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "yLLMKit-Demo/yLLMKit-Demo.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.yaniz.yLLMKit-Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		40A9A6942FB79BEF00D81858 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.yaniz.yLLMKit-DemoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yLLMKit-Demo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/yLLMKit-Demo";
+			};
+			name = Debug;
+		};
+		40A9A6952FB79BEF00D81858 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.yaniz.yLLMKit-DemoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yLLMKit-Demo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/yLLMKit-Demo";
+			};
+			name = Release;
+		};
+		40A9A6972FB79BEF00D81858 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.yaniz.yLLMKit-DemoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "yLLMKit-Demo";
+			};
+			name = Debug;
+		};
+		40A9A6982FB79BEF00D81858 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.yaniz.yLLMKit-DemoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "yLLMKit-Demo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		40A9A66A2FB79BEE00D81858 /* Build configuration list for PBXProject "yLLMKit-Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40A9A68E2FB79BEF00D81858 /* Debug */,
+				40A9A68F2FB79BEF00D81858 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40A9A6902FB79BEF00D81858 /* Build configuration list for PBXNativeTarget "yLLMKit-Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40A9A6912FB79BEF00D81858 /* Debug */,
+				40A9A6922FB79BEF00D81858 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40A9A6932FB79BEF00D81858 /* Build configuration list for PBXNativeTarget "yLLMKit-DemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40A9A6942FB79BEF00D81858 /* Debug */,
+				40A9A6952FB79BEF00D81858 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40A9A6962FB79BEF00D81858 /* Build configuration list for PBXNativeTarget "yLLMKit-DemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40A9A6972FB79BEF00D81858 /* Debug */,
+				40A9A6982FB79BEF00D81858 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 40A9A6672FB79BEE00D81858 /* Project object */;
+}

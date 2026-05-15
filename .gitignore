@@ -1,5 +1,9 @@
 .DS_Store
 
+# Xcode user state
+*.xcuserstate
+xcuserdata/
+
 # Local planning and assistant workspace files
 .codex/
 .codex-local/
