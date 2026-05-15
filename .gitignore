@@ -1,0 +1,13 @@
+.DS_Store
+
+# Local planning and assistant workspace files
+.codex/
+.codex-local/
+codex/
+prompts/
+tasks/
+checklists/
+manifest.json
+
+# Draft implementation notes kept out of public project docs
+docs/
