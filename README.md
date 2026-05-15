@@ -16,7 +16,50 @@ The demo is intentionally simple:
 
 - macOS 14 or later.
 - Swift 6.2 or later.
+- Full Xcode, not only the Command Line Tools package.
 - Apple Silicon is recommended for MLX-backed local inference.
+
+## Fresh Xcode Setup
+
+On a new machine or a fresh Xcode install, make sure the active developer
+directory points at Xcode:
+
+```sh
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+```
+
+Run Xcode's first-launch setup so license acceptance and required components
+are ready before the first build:
+
+```sh
+sudo xcodebuild -runFirstLaunch
+```
+
+Install the Metal Toolchain before building the MLX-backed target:
+
+```sh
+xcodebuild -downloadComponent MetalToolchain
+```
+
+The first build will resolve Swift Package dependencies from GitHub, including
+`yLLMKit`, `mlx-swift-lm`, `mlx-swift`, and Hugging Face packages, so network
+access is required.
+
+When building from the command line, skip macro validation for the MLX package
+macro target:
+
+```sh
+xcodebuild \
+  -skipMacroValidation \
+  -project yLLMKit-Demo.xcodeproj \
+  -scheme yLLMKit-Demo \
+  -configuration Debug \
+  -destination 'platform=macOS' \
+  build
+```
+
+Opening the project in Xcode may prompt you to trust or enable package macros.
+Approve the prompt for the MLX dependency when asked.
 
 ## yLLMKit Capabilities Used
 
