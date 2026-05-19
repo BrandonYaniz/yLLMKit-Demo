@@ -9,6 +9,8 @@ The demo is intentionally simple:
 - Download the selected model when it is not installed.
 - Display model download progress.
 - Load the selected model.
+- Manage downloaded models from the app.
+- Switch between downloaded models from the chat window.
 - Send the full chat history to the local LLM for each response.
 - Stream assistant responses into a chat interface.
 
@@ -70,6 +72,7 @@ demo:
 - `FileModelStore` for tracking installed models.
 - `LLMRuntime` for model discovery, download, install, load, and session
   creation.
+- `LLMRuntime.removeModel(id:)` for deleting downloaded models.
 - `yLLMKitMLX` for MLX-backed local inference.
 - `LLMSession.streamResponse(to:settings:)` for streaming chat output.
 

@@ -6,6 +6,9 @@ import yLLMKitMLX
 @MainActor
 final class DemoViewModel: ObservableObject {
     @Published private(set) var setupState: SetupState = .checking
+    @Published private(set) var supportedModels: [ModelDescriptor] = []
+    @Published private(set) var localModels: [LocalModel] = []
+    @Published private(set) var modelDownloads: [String: DownloadProgress] = [:]
     @Published private(set) var messages: [ChatMessage] = []
     @Published var draftMessage = ""
     @Published private(set) var isThinking = false
@@ -16,9 +19,22 @@ final class DemoViewModel: ObservableObject {
     private var activeModel: ModelDescriptor?
     private var setupTask: Task<Void, Never>?
     private var generationTask: Task<Void, Never>?
+    private var downloadTasks: [String: Task<Void, Never>] = [:]
 
     var activeModelName: String {
         activeModel?.displayName ?? "No model loaded"
+    }
+
+    var activeModelID: String? {
+        activeModel?.id
+    }
+
+    var installedModelIDs: Set<String> {
+        Set(localModels.map(\.modelID))
+    }
+
+    var installedModels: [ModelDescriptor] {
+        supportedModels.filter { installedModelIDs.contains($0.id) }
     }
 
     func start() async {
@@ -38,6 +54,38 @@ final class DemoViewModel: ObservableObject {
         setupTask = Task {
             await downloadAndLoadModel(model)
         }
+    }
+
+    func downloadModel(_ model: ModelDescriptor) {
+        guard downloadTasks[model.id] == nil else { return }
+        downloadTasks[model.id] = Task {
+            await downloadModel(model, loadWhenComplete: activeModel == nil)
+            downloadTasks[model.id] = nil
+        }
+    }
+
+    func switchModel(to model: ModelDescriptor) {
+        guard model.id != activeModel?.id, installedModelIDs.contains(model.id), !isThinking else { return }
+        setupTask?.cancel()
+        setupTask = Task {
+            await loadInstalledModel(model)
+        }
+    }
+
+    func removeModel(_ model: ModelDescriptor) {
+        guard !isThinking else { return }
+        setupTask?.cancel()
+        setupTask = Task {
+            await removeInstalledModel(model)
+        }
+    }
+
+    func isModelInstalled(_ model: ModelDescriptor) -> Bool {
+        installedModelIDs.contains(model.id)
+    }
+
+    func isDownloading(_ model: ModelDescriptor) -> Bool {
+        modelDownloads[model.id] != nil
     }
 
     func sendDraftMessage() {
@@ -65,8 +113,9 @@ final class DemoViewModel: ObservableObject {
             let runtime = try makeRuntime()
             self.runtime = runtime
 
-            let supportedModels = await runtime.supportedModels()
-            let installedModel = try await firstInstalledModel(in: supportedModels, runtime: runtime)
+            supportedModels = await runtime.supportedModels()
+            try await refreshLocalModels(runtime: runtime)
+            let installedModel = firstInstalledModel()
 
             guard let installedModel else {
                 setupState = .needsModel(supportedModels)
@@ -88,10 +137,76 @@ final class DemoViewModel: ObservableObject {
             let stream = try await runtime.downloadAndInstallModel(id: model.id)
 
             for try await progress in stream {
-                setupState = .downloading(model, DownloadProgress(progress: progress))
+                let downloadProgress = DownloadProgress(progress: progress)
+                modelDownloads[model.id] = downloadProgress
+                setupState = .downloading(model, downloadProgress)
             }
 
+            modelDownloads[model.id] = nil
+            try await refreshLocalModels(runtime: runtime)
             try await load(model: model, runtime: runtime)
+        } catch {
+            modelDownloads[model.id] = nil
+            setupState = .failed(error.localizedDescription)
+        }
+    }
+
+    private func downloadModel(_ model: ModelDescriptor, loadWhenComplete: Bool) async {
+        do {
+            let runtime = try runtime ?? makeRuntime()
+            self.runtime = runtime
+
+            modelDownloads[model.id] = DownloadProgress(phaseLabel: "Queued")
+            let stream = try await runtime.downloadAndInstallModel(id: model.id)
+            for try await progress in stream {
+                modelDownloads[model.id] = DownloadProgress(progress: progress)
+            }
+
+            modelDownloads[model.id] = nil
+            try await refreshLocalModels(runtime: runtime)
+
+            if loadWhenComplete {
+                try await load(model: model, runtime: runtime)
+            }
+        } catch {
+            modelDownloads[model.id] = nil
+            setupState = .failed(error.localizedDescription)
+        }
+    }
+
+    private func loadInstalledModel(_ model: ModelDescriptor) async {
+        do {
+            let runtime = try runtime ?? makeRuntime()
+            self.runtime = runtime
+            try await load(model: model, runtime: runtime)
+        } catch {
+            setupState = .failed(error.localizedDescription)
+        }
+    }
+
+    private func removeInstalledModel(_ model: ModelDescriptor) async {
+        do {
+            let runtime = try runtime ?? makeRuntime()
+            self.runtime = runtime
+
+            if model.id == activeModel?.id {
+                session?.cancel()
+                session = nil
+                activeModel = nil
+                messages.removeAll()
+                statusText = "Ready"
+            }
+
+            try await runtime.removeModel(id: model.id)
+            try await refreshLocalModels(runtime: runtime)
+
+            if activeModel == nil {
+                if let nextModel = firstInstalledModel() {
+                    try await load(model: nextModel, runtime: runtime)
+                } else {
+                    setupState = .needsModel(supportedModels)
+                }
+            }
         } catch {
             setupState = .failed(error.localizedDescription)
         }
@@ -137,17 +252,12 @@ final class DemoViewModel: ObservableObject {
             .appendingPathComponent("Models", isDirectory: true)
     }
 
-    private func firstInstalledModel(
-        in models: [ModelDescriptor],
-        runtime: LLMRuntime
-    ) async throws -> ModelDescriptor? {
-        for model in models {
-            if try await runtime.isModelInstalled(model.id) {
-                return model
-            }
-        }
+    private func refreshLocalModels(runtime: LLMRuntime) async throws {
+        localModels = try await runtime.localModels()
+    }
 
-        return nil
+    private func firstInstalledModel() -> ModelDescriptor? {
+        supportedModels.first { installedModelIDs.contains($0.id) }
     }
 
     private func generateResponse(assistantID: UUID) async {
@@ -219,11 +329,15 @@ struct DownloadProgress {
     }
 
     init(progress: ModelDownloadProgress) {
-        if let totalBytes = progress.totalBytes,
-           totalBytes > 0,
-           progress.completedBytes > 0,
-           progress.completedBytes <= totalBytes {
-            fraction = min(1, Double(progress.completedBytes) / Double(totalBytes))
+        if let fractionCompleted = progress.fractionCompleted,
+           fractionCompleted.isFinite {
+            fraction = min(1, max(0, fractionCompleted))
+        } else if let totalBytes = progress.totalBytes,
+                  let completedBytes = progress.completedBytes,
+                  totalBytes > 0,
+                  completedBytes > 0,
+                  completedBytes <= totalBytes {
+            fraction = min(1, Double(completedBytes) / Double(totalBytes))
         } else {
             fraction = nil
         }

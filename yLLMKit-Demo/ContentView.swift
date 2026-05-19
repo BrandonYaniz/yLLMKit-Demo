@@ -213,6 +213,7 @@ private struct ErrorStateView: View {
 
 private struct ChatView: View {
     @ObservedObject var model: DemoViewModel
+    @State private var showsModelManagement = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -258,6 +259,10 @@ private struct ChatView: View {
             .padding(16)
             .background(.bar)
         }
+        .sheet(isPresented: $showsModelManagement) {
+            ModelManagementView(model: model)
+                .frame(minWidth: 680, minHeight: 520)
+        }
     }
 
     private var header: some View {
@@ -275,9 +280,206 @@ private struct ChatView: View {
             }
 
             Spacer()
+
+            if model.installedModels.count > 1 {
+                Picker("Model", selection: activeModelSelection) {
+                    ForEach(model.installedModels) { descriptor in
+                        Text(descriptor.displayName)
+                            .tag(descriptor.id)
+                    }
+                }
+                .labelsHidden()
+                .frame(width: 210)
+                .disabled(model.isThinking)
+            }
+
+            Button {
+                showsModelManagement = true
+            } label: {
+                Label("Models", systemImage: "internaldrive")
+            }
+            .disabled(model.isThinking)
         }
         .padding(.horizontal, 18)
         .padding(.vertical, 12)
+    }
+
+    private var activeModelSelection: Binding<String> {
+        Binding(
+            get: { model.activeModelID ?? "" },
+            set: { modelID in
+                guard let descriptor = model.installedModels.first(where: { $0.id == modelID }) else { return }
+                model.switchModel(to: descriptor)
+            }
+        )
+    }
+}
+
+private struct ModelManagementView: View {
+    @ObservedObject var model: DemoViewModel
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Models")
+                        .font(.title2.weight(.semibold))
+                    Text("Download, switch, or remove supported yLLMKit models.")
+                        .foregroundStyle(.secondary)
+                }
+
+                Spacer()
+
+                Button("Done") {
+                    dismiss()
+                }
+                .keyboardShortcut(.cancelAction)
+            }
+            .padding(20)
+
+            Divider()
+
+            ScrollView {
+                LazyVStack(spacing: 12) {
+                    ForEach(model.supportedModels) { descriptor in
+                        ManagedModelRow(
+                            descriptor: descriptor,
+                            localModel: model.localModels.first { $0.modelID == descriptor.id },
+                            isInstalled: model.isModelInstalled(descriptor),
+                            isActive: model.activeModelID == descriptor.id,
+                            isDownloading: model.isDownloading(descriptor),
+                            progress: model.modelDownloads[descriptor.id],
+                            isBusy: model.isThinking,
+                            download: { model.downloadModel(descriptor) },
+                            switchModel: { model.switchModel(to: descriptor) },
+                            remove: { model.removeModel(descriptor) }
+                        )
+                    }
+                }
+                .padding(20)
+            }
+        }
+    }
+}
+
+private struct ManagedModelRow: View {
+    var descriptor: ModelDescriptor
+    var localModel: LocalModel?
+    var isInstalled: Bool
+    var isActive: Bool
+    var isDownloading: Bool
+    var progress: DownloadProgress?
+    var isBusy: Bool
+    var download: () -> Void
+    var switchModel: () -> Void
+    var remove: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .top, spacing: 14) {
+                Image(systemName: iconName)
+                    .font(.title3)
+                    .foregroundStyle(iconColor)
+                    .frame(width: 28)
+
+                VStack(alignment: .leading, spacing: 6) {
+                    HStack(spacing: 8) {
+                        Text(descriptor.displayName)
+                            .font(.headline)
+
+                        if isActive {
+                            Text("Active")
+                                .font(.caption.weight(.medium))
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 3)
+                                .background(Color.green.opacity(0.16), in: Capsule())
+                        } else if isInstalled {
+                            Text("Downloaded")
+                                .font(.caption.weight(.medium))
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 3)
+                                .background(.quaternary, in: Capsule())
+                        }
+                    }
+
+                    Text(descriptor.repository)
+                        .font(.callout)
+                        .foregroundStyle(.secondary)
+
+                    HStack(spacing: 12) {
+                        Text("Context: \(descriptor.capabilities.contextWindow.formatted())")
+                        if let ram = descriptor.recommendedRAMGB {
+                            Text("RAM: \(ram) GB")
+                        }
+                        if let sizeBytes = localModel?.sizeBytes {
+                            Text("Size: \(ByteCountFormatter.string(fromByteCount: sizeBytes, countStyle: .file))")
+                        }
+                    }
+                    .font(.caption)
+                    .foregroundStyle(.tertiary)
+                }
+
+                Spacer()
+            }
+
+            if let progress {
+                if let fraction = progress.fraction {
+                    ProgressView(value: fraction)
+                    Text(fraction, format: .percent.precision(.fractionLength(0)))
+                        .font(.caption.monospacedDigit())
+                        .foregroundStyle(.secondary)
+                } else {
+                    ProgressView()
+                    Text(progress.phaseLabel)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+
+            HStack {
+                Spacer()
+
+                if isInstalled {
+                    Button("Use", action: switchModel)
+                        .disabled(isActive || isBusy)
+
+                    Button("Remove", role: .destructive, action: remove)
+                        .disabled(isBusy)
+                } else {
+                    Button("Download", action: download)
+                        .buttonStyle(.borderedProminent)
+                        .disabled(isDownloading || isBusy)
+                }
+            }
+        }
+        .padding(16)
+        .background(.background)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .overlay {
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(.quaternary)
+        }
+    }
+
+    private var iconName: String {
+        if isActive {
+            return "checkmark.circle.fill"
+        }
+        if isInstalled {
+            return "internaldrive.fill"
+        }
+        return "square.and.arrow.down"
+    }
+
+    private var iconColor: Color {
+        if isActive {
+            return .green
+        }
+        if isInstalled {
+            return .accentColor
+        }
+        return .secondary
     }
 }
 
