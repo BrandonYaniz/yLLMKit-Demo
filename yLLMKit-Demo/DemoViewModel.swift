@@ -113,7 +113,10 @@ final class DemoViewModel: ObservableObject {
 
     private func makeRuntime() throws -> LLMRuntime {
         let registry = try ModelRegistry(models: SupportedModelCatalog.all)
-        let store = try FileModelStore(rootDirectory: modelStoreURL())
+        let store = try FileModelStore(
+            rootDirectory: modelStoreURL(),
+            removalPolicy: .registeredPaths
+        )
         return try LLMRuntime(
             modelRegistry: registry,
             modelStore: store,
