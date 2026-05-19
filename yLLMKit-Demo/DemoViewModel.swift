@@ -219,7 +219,10 @@ struct DownloadProgress {
     }
 
     init(progress: ModelDownloadProgress) {
-        if let totalBytes = progress.totalBytes, totalBytes > 0 {
+        if let totalBytes = progress.totalBytes,
+           totalBytes > 0,
+           progress.completedBytes > 0,
+           progress.completedBytes <= totalBytes {
             fraction = min(1, Double(progress.completedBytes) / Double(totalBytes))
         } else {
             fraction = nil
